@@ -11,7 +11,7 @@ app.use(express.static('public'));
 
 app.get('/movieInfo/:inputValue', (req, res) => {
     axios({
-      url: `http://omdbapi.com/?s=${req.params.inputValue}&apikey=${process.env.OMDB_API_KEY}`,
+      url: `http://omdbapi.com/?s=${req.params.inputValue}&apikey=${process.env.OMDB_API_KEY}`, // http://www.omdbapi.com/?t=Spiderman
       method: 'get'
     })
     .then((response) => {
@@ -30,3 +30,4 @@ app.get('/movie/:id', (req, res) => {
 });
 
 module.exports = app;
+
