@@ -10,7 +10,7 @@ const initialState = {
 function movieSearchReducer(state = initialState, action){
     const  { type, payload} = action;
     switch(type){
-        case 'GET_MOVIE_FULFILLED': { // if FULFILLED isn't present the nothing will return 
+        case 'GET_MOVIE_FULFILLED': {
             return {
                 ...state,
                 title: payload.data.Title,
