@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { getMovie, updateUserInput } from './movieSearchActions';
+import { getMovie, updateUserInput } from './movieSearchActions.js';
 
 class MovieSearchContainer extends React.Component {
     constructor(props){
         super(props)
 
         this.handleSearch = this.handleSearch.bind(this);
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event){
@@ -17,9 +17,9 @@ class MovieSearchContainer extends React.Component {
     }
 
     handleSearch(event){
-        const { dispatch } = this.props;
+        const { dispatch, userInput } = this.props;
         event.preventDefault();
-        dispatch(getMovie(event.target.value));
+        dispatch(getMovie(userInput));
     }
 
     render(){
@@ -32,10 +32,10 @@ class MovieSearchContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+function mapStateToProps(state){
     return {
         userInput: state.movie.userInput
-    }
+    };
 }
 
 export default connect(mapStateToProps)(MovieSearchContainer)

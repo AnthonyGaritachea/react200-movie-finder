@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-export const getMovie = () => {
+export function getMovie(userInput){
     return {
         'type': 'GET_MOVIE',
         payload: axios.get(`/movieInfo`)
-                .then(results => console.log(results))
     }
 }
 
