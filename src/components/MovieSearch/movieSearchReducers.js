@@ -5,7 +5,8 @@ const initialState = {
     poster: '',
     title:'',
     year: '',
-    plot: ''
+    plot: '',
+    searchResults: []
 }; 
 
 function movieSearchReducer(state = initialState, action){
@@ -17,7 +18,8 @@ function movieSearchReducer(state = initialState, action){
                 poster: payload.data.Poster,
                 title: payload.data.Title,
                 year: payload.data.Year,
-                plot: payload.data.Plot
+                plot: payload.data.Plot,
+                searchResults: payload.data.Search
             }
         }
 

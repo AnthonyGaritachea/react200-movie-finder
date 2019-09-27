@@ -23,10 +23,22 @@ class MovieSearchContainer extends React.Component {
     }
 
     render(){
+        const { searchResults } = this.props;
         return (
             <div>
                 <input type = 'text' onChange = {this.handleChange}/>
                 <button onClick = {this.handleSearch}>Search</button>
+                <ul>
+                { searchResults.map( (movie) => {
+            return (
+                <li key={movie.imdbID}>
+                    <img src = {movie.Poster}></img>
+                    {movie.Title}
+                    {movie.Year}
+                </li>
+              )}
+            )}
+                </ul>
             </div>
         )
     }
@@ -34,7 +46,12 @@ class MovieSearchContainer extends React.Component {
 
 function mapStateToProps(state){
     return {
-        userInput: state.movie.userInput
+        userInput: state.movie.userInput,
+        poster: state.movie.poster,
+        title: state.movie.title,
+        year: state.movie.year,
+        plot: state.movie.plot,
+        searchResults: state.movie.searchResults
     };
 }
 
