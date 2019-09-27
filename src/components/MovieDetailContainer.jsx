@@ -7,9 +7,10 @@ class MovieDetailContainer extends React.Component {
         super(props)
     }
     render(){
-        const { title, year, plot } = this.props;
+        const { title, year, plot, poster } = this.props;
         return (
             <div>
+                <img src = {poster}></img>
                 <h1>{title}</h1>
                 <h1>{year}</h1>
                 <p>{plot}</p>
@@ -20,6 +21,7 @@ class MovieDetailContainer extends React.Component {
 
 function mapStateToProps(state){
     return {
+        poster: state.movie.poster,
         title: state.movie.title,
         year: state.movie.year,
         plot: state.movie.plot

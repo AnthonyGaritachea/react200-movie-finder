@@ -10,25 +10,25 @@ app.use(morgan('dev'));
 app.use(express.static('dist'));
 app.use(express.static('public'));
 
-// app.get('/movieInfo/:inputValue', (req, res) => {
-//     axios({
-//       url: `http://omdbapi.com/?s=${req.params.inputValue}&apikey=${process.env.OMDB_API_KEY}`, // http://www.omdbapi.com/?t=Spiderman b24f7130
-//       method: 'get'
-//     })
-//     .then((response) => {
-//       res.send(response.data);
-//     });
-//   });
-
-  app.get('/movieInfo', (req, res) => {
+app.get('/movieInfo/:userInput', (req, res) => {
     axios({
-      url: `http://omdbapi.com/?t=Batman&apikey=${process.env.OMDB_API_KEY}`, // http://www.omdbapi.com/?t=Spiderman b24f7130
+      url: `http://omdbapi.com/?t=${req.params.userInput}&apikey=${process.env.OMDB_API_KEY}`, // http://www.omdbapi.com/?t=Spiderman b24f7130
       method: 'get'
     })
     .then((response) => {
       res.send(response.data);
     });
   });
+
+  // app.get('/movieInfo', (req, res) => {
+  //   axios({
+  //     url: `http://omdbapi.com/?t=Batman&apikey=${process.env.OMDB_API_KEY}`, // http://www.omdbapi.com/?t=Spiderman b24f7130
+  //     method: 'get'
+  //   })
+  //   .then((response) => {
+  //     res.send(response.data);
+  //   });
+  // });
 
 // app.get('/movie/:id', (req, res) => {
 //     axios({
