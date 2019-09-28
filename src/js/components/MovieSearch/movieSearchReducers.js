@@ -2,10 +2,6 @@ import { type } from 'os';
 
 const initialState = {
     userInput: '',
-    poster: '',
-    title:'',
-    year: '',
-    plot: '',
     searchResults: []
 }; 
 
@@ -15,10 +11,6 @@ function movieSearchReducer(state = initialState, action){
         case 'GET_MOVIE_FULFILLED': {
             return {
                 ...state,
-                poster: payload.data.Poster,
-                title: payload.data.Title,
-                year: payload.data.Year,
-                plot: payload.data.Plot,
                 searchResults: payload.data.Search
             }
         }

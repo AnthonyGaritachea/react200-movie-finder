@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import {HashRouter as Router,Route } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import MovieSearchContainer from '../components/MovieSearch/MovieSearchHome.jsx';
-import MovieDetailContainer from '../components/MovieDetailAbout.jsx';
+import MovieSearchHome from './components/MovieSearch/MovieSearchHome.jsx';
+import MovieDetailAbout from './components/MovieDetail/MovieDetailAbout.jsx';
 
 export default class App extends Component {
   render() {
     return (
-      <div className='container'> 
-        <MovieSearchContainer/>
-        <MovieDetailContainer/>
-      </div>
-    
+      <Router>
+        <Switch>
+        <div className='container'> 
+            <Route path = "/" exact component = {MovieSearchHome}/>
+            <Route path = "/about/:id" exact component = {MovieDetailAbout}/>
+        </div>
+        </Switch>
+      </Router>
     );
   }
 }

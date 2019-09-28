@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { getMovie, updateUserInput } from './movieSearchActions.js';
 
-class MovieSearchContainer extends React.Component {
+class MovieSearchHome extends React.Component {
     constructor(props){
         super(props) 
 
@@ -14,13 +15,13 @@ class MovieSearchContainer extends React.Component {
     handleChange(event){
         const { dispatch } = this.props;
         dispatch(updateUserInput(event.target.value));
-    }
+    };
 
     handleSearch(event){
         const { dispatch, userInput } = this.props;
         event.preventDefault();
         dispatch(getMovie(userInput));
-    }
+    };
 
     render(){
         const { searchResults } = this.props;
@@ -30,14 +31,15 @@ class MovieSearchContainer extends React.Component {
                 <button onClick = {this.handleSearch}>Search</button>
                 <ul>
                 { searchResults.map( (movie) => {
-            return (
-                <li key={movie.imdbID}>
-                    <img src = {movie.Poster}></img>
-                    {movie.Title}
-                    {movie.Year}
-                </li>
+                    return (
+                    <li key={movie.imdbID}>
+                        <img src = {movie.Poster}></img>
+                        <Link to = {`/about/${movie.imdbID}`}>{movie.Title}</Link>
+                        {movie.Year}
+                     {/* <Link to = "/about" ><button value = {movie.imdbID} onClick = {this.handleButtonSearch}>More Information</button></Link> */}
+                    </li>
               )}
-            )}
+              )}
                 </ul>
             </div>
         )
@@ -47,12 +49,8 @@ class MovieSearchContainer extends React.Component {
 function mapStateToProps(state){
     return {
         userInput: state.movie.userInput,
-        poster: state.movie.poster,
-        title: state.movie.title,
-        year: state.movie.year,
-        plot: state.movie.plot,
         searchResults: state.movie.searchResults
     };
 }
 
-export default connect(mapStateToProps)(MovieSearchContainer)
+export default connect(mapStateToProps)(MovieSearchHome)
